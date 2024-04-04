@@ -8,15 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("api/tasks")
 public class TaskController {
     private final TaskService taskService;
 
-    /*
-     a injeção de dependência é visível no construtor da classe TaskController. TaskController depende de TaskService,
-     que é passado como um parâmetro no construtor. O Spring será responsável por injetar uma instância de TaskService
-     quando criar uma instância de TaskController.
-     */
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
