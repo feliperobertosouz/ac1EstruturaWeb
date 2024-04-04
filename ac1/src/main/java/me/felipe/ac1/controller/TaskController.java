@@ -1,5 +1,6 @@
 package me.felipe.ac1.controller;
 
+import me.felipe.ac1.model.Task;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,30 +9,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-    private List<String> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
+    private Long nextId = 1L;
 
     public TaskController() {
-        tasks.add("Estudar para a prova de matemática");
-        tasks.add("Estudar para alguma prova ai ");
-        tasks.add("Peeeeeeeeeeeeeee");
+        tasks.add(new Task(nextId++, "Estudar para a prova de matemática", "Revisar álgebra e geometria"));
+        tasks.add(new Task(nextId++, "Fazer compras no mercado", "Comprar itens de casa"));
+        tasks.add(new Task(nextId++, "Preparar apresentação para o trabalho", "Preparar slides e dados para apresentação"));
     }
     @GetMapping
-    public List<String> getAllTasks() {
+    public List<Task> getAllTasks() {
         return tasks;
     }
 
     @GetMapping("/{task}")
-    public String getTaskByIndex(@PathVariable int task) {
-        if (task >= 0 && task < tasks.size()) {
-            return tasks.get(task);
-        } else {
-            return "Tarefa não encontrada";
-        }
+    public Task getTaskByIndex(@PathVariable int id) {
+        System.out.println("ID RECEBIDO " + id);
+        return tasks.stream()
+                .filter(task -> task.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @PostMapping("/add")
-    public void addTask(@RequestBody String task) {
-        tasks.add(task); // Adiciona a tarefa recebida aos dados simulados
+    public Task addTask(@RequestBody Task task) {
+        tasks.add(task);
         System.out.println("Tarefa adicionada: " + task); // Exibe os dados recebidos via POST no console
+        return task; // Retorna a tarefa adicionada
     }
 }
