@@ -46,7 +46,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public Task save(Task task) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        session.remove(task);
+        session.saveOrUpdate(task);
         transaction.commit();
         return task;
     }
@@ -56,18 +56,13 @@ public class TaskRepositoryImpl implements TaskRepository {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
 
-
-        String hqlQuery = "DELETE FROM Task WHERE id = :taskId";
-        Query query = session.createQuery(hqlQuery);
-        query.setParameter("taskId", id);
-
-        int deletedCount = query.executeUpdate();
-        transaction.commit();
-
-        if (deletedCount > 0) {
-
-            return new Task();
+        Task task = session.get(Task.class, id);
+        if (task != null) {
+            session.delete(task);
+            transaction.commit();
+            return task;
         } else {
+            transaction.rollback();
             return null;
         }
     }
