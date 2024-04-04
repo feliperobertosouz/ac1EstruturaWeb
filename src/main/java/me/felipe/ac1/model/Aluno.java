@@ -1,38 +1,70 @@
 package me.felipe.ac1.model;
 
 public class Aluno {
-    private Long id;
-    private String title;
-    private String description;
+    private long id;
+    private String nome;
+    private String email;
 
-    public Aluno(Long id, String title, String description) {
+    private int idade;
+
+    private String cpf;
+
+    private String telefone;
+
+    public Aluno(long id, String nome, String email, int idade, String cpf, String telefone) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.nome = nome;
+        this.email = email;
+        this.idade = idade;
+        this.cpf = cpf;
+        this.telefone = telefone;
     }
 
-    // Getters e Setters (exemplo)
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

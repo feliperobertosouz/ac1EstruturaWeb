@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TaskRepositoryImpl implements TaskRepository {
+public class AlunoRepositoryImpl implements AlunoRepository {
     private final List<Aluno> alunos = new ArrayList<>();
     private Long nextId = 1L;
 
-    public TaskRepositoryImpl() {
+    public AlunoRepositoryImpl() {
         // Adiciona algumas tarefas pré-cadastradas
         alunos.add(new Aluno(1L, "Estudar para a prova de matemática", "Revisar cálculos e geometria"));
         alunos.add(new Aluno(2L, "Fazer compras no mercado", "Comprar vegetais, carne e itens de limpeza"));
@@ -27,7 +27,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public Aluno findById(Long id) {
         return alunos.stream()
-                .filter(task -> task.getId().equals(id))
+                .filter(Aluno -> Aluno.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }

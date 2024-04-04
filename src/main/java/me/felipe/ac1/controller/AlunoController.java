@@ -1,37 +1,32 @@
 package me.felipe.ac1.controller;
 
 import me.felipe.ac1.model.Aluno;
-import me.felipe.ac1.service.TaskService;
+import me.felipe.ac1.service.AlunoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api/alunos")
 public class AlunoController {
-    private final TaskService taskService;
-
-    /*
-     a injeção de dependência é visível no construtor da classe TaskController. TaskController depende de TaskService,
-     que é passado como um parâmetro no construtor. O Spring será responsável por injetar uma instância de TaskService
-     quando criar uma instância de TaskController.
-     */
-    public AlunoController(TaskService taskService) {
-        this.taskService = taskService;
+    private final AlunoService alunoService;
+    
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
     }
 
     @GetMapping
-    public List<Aluno> getAllTasks() {
-        return taskService.getAllTasks();
+    public List<Aluno> getAllAlunos() {
+        return alunoService.getAllAlunos();
     }
 
     @GetMapping("/{id}")
-    public Aluno getTaskById(@PathVariable Long id) {
-        return taskService.getTaskById(id);
+    public Aluno getAlunoById(@PathVariable Long id) {
+        return alunoService.getAlunoById(id);
     }
 
     @PostMapping("/add")
-    public Aluno createTask(@RequestBody Aluno aluno) {
-        return taskService.createTask(aluno);
+    public Aluno createAluno(@RequestBody Aluno aluno) {
+        return alunoService.createAluno(aluno);
     }
 }
