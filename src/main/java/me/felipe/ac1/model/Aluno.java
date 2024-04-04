@@ -1,7 +1,7 @@
 package me.felipe.ac1.model;
 
 public class Aluno {
-    private long id;
+    private int id;
     private String nome;
     private String email;
 
@@ -11,7 +11,7 @@ public class Aluno {
 
     private String telefone;
 
-    public Aluno(long id, String nome, String email, int idade, String cpf, String telefone) {
+    public Aluno(int id, String nome, String email, int idade, String cpf, String telefone) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -20,11 +20,11 @@ public class Aluno {
         this.telefone = telefone;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

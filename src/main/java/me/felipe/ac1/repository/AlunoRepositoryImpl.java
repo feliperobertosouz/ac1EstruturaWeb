@@ -9,14 +9,14 @@ import java.util.List;
 @Repository
 public class AlunoRepositoryImpl implements AlunoRepository {
     private final List<Aluno> alunos = new ArrayList<>();
-    private Long nextId = 1L;
+    private int nextId = 1;
 
     public AlunoRepositoryImpl() {
         // Adiciona algumas tarefas pré-cadastradas
-        alunos.add(new Aluno(1L, "Estudar para a prova de matemática", "Revisar cálculos e geometria"));
-        alunos.add(new Aluno(2L, "Fazer compras no mercado", "Comprar vegetais, carne e itens de limpeza"));
-        alunos.add(new Aluno(3L, "Preparar apresentação para o trabalho", "Criar slides e ensaiar apresentação"));
-        nextId = 4L; // Atualiza o próximo ID
+        alunos.add(new Aluno(nextId++, "Felipe", "Felipe@gmail.com",15,"1111","(11)1111"));
+        alunos.add(new Aluno(nextId++, "João", "Joao@gmail.com",15,"2222","(22)1111"));
+        alunos.add(new Aluno(nextId++, "Maria", "Maria@gmail.com",15,"3333","(33)1111"));
+        nextId = 4; // Atualiza o próximo ID
     }
 
     @Override
@@ -27,18 +27,18 @@ public class AlunoRepositoryImpl implements AlunoRepository {
     @Override
     public Aluno findById(Long id) {
         return alunos.stream()
-                .filter(Aluno -> Aluno.getId().equals(id))
+                .filter(Aluno -> Aluno.getId() == (id))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
     public Aluno save(Aluno aluno) {
-        if (aluno.getId() == null) {
+        if (aluno.getId() == 0) {
             aluno.setId(nextId++);
             alunos.add(aluno);
         } else {
-            alunos.removeIf(t -> t.getId().equals(aluno.getId()));
+            alunos.removeIf(t -> t.getId() == (aluno.getId()));
             alunos.add(aluno);
         }
         return aluno;
