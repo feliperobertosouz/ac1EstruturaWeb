@@ -1,10 +1,11 @@
 package me.felipe.ac1.service;
 
 import me.felipe.ac1.model.Task;
-import me.felipe.ac1.repository.TaskRepository;
+import me.felipe.ac1.model.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -27,5 +28,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(Task task) {
         return taskRepository.save(task);
+    }
+
+    @Override
+    public Task removeTask(int id) {
+        return taskRepository.delete(id);
     }
 }

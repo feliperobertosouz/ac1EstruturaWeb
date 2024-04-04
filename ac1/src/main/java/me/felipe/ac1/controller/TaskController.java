@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/tasks")
+@RequestMapping("/api/tasks")
 public class TaskController {
     private final TaskService taskService;
+
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
@@ -29,5 +30,11 @@ public class TaskController {
     @PostMapping("/add")
     public Task createTask(@RequestBody Task task) {
         return taskService.createTask(task);
+    }
+
+
+    @DeleteMapping("/remove/{id}")
+    public Task removeTask(@PathVariable int id) {
+        return taskService.removeTask(id);
     }
 }

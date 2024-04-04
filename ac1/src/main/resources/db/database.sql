@@ -8,26 +8,22 @@ CREATE DATABASE tasks
     ENCODING = 'UTF8'
     LC_COLLATE = 'Portuguese_Brazil.1252'
     LC_CTYPE = 'Portuguese_Brazil.1252'
-    LOCALE_PROVIDER = 'libc'
+    TEMPLATE = template0
     TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
+    CONNECTION LIMIT = -1;
 
-    -- Table: public.categoria
+-- Table: public.categoria
 
 -- DROP TABLE IF EXISTS public.categoria;
 
 CREATE TABLE IF NOT EXISTS public.categoria
 (
-    id integer NOT NULL DEFAULT nextval('categoria_id_seq'::regclass),
-    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT categoria_pkey PRIMARY KEY (id)
-)
-
-TABLESPACE pg_default;
+    id serial PRIMARY KEY,
+    nome character varying(255) NOT NULL
+);
 
 ALTER TABLE IF EXISTS public.categoria
-    OWNER to postgres;
+    OWNER TO postgres;
 
 -- Table: public.task
 
@@ -35,30 +31,21 @@ ALTER TABLE IF EXISTS public.categoria
 
 CREATE TABLE IF NOT EXISTS public.task
 (
-    id bigint NOT NULL,
+    id bigserial PRIMARY KEY,
     title character varying COLLATE pg_catalog."default",
     description character varying COLLATE pg_catalog."default",
     categoria_id integer,
-    CONSTRAINT task_pkey PRIMARY KEY (id),
     CONSTRAINT fk_task_categoria FOREIGN KEY (categoria_id)
         REFERENCES public.categoria (id) MATCH SIMPLE
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT task_categoria_id_fkey FOREIGN KEY (categoria_id)
-        REFERENCES public.categoria (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
-
-TABLESPACE pg_default;
+);
 
 ALTER TABLE IF EXISTS public.task
-    OWNER to postgres;
+    OWNER TO postgres;
 
-
--- INSERT
+    -- Inserção de dados
 INSERT INTO public.task (id, title, description, categoria_id)
-VALUES
-    (1, 'Tarefa 1', 'Descrição da Tarefa 1', 1),
-    (2, 'Tarefa 2', 'Descrição da Tarefa 2', 2),
-    (3, 'Tarefa 3', 'Descrição da Tarefa 3', 1);
+VALUES (1, 'Tarefa 1', 'Descrição da Tarefa 1', 1),
+       (2, 'Tarefa 2', 'Descrição da Tarefa 2', 2),
+       (3, 'Tarefa 3', 'Descrição da Tarefa 3', 1);

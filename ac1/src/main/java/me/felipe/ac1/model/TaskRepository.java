@@ -1,4 +1,4 @@
-package me.felipe.ac1.repository;
+package me.felipe.ac1.model;
 
 import me.felipe.ac1.model.Task;
 
@@ -8,4 +8,6 @@ public interface TaskRepository {
     List<Task> findAll();
     Task findById(Long id);
     Task save(Task task);
+
+    Task delete(int id);
 }
