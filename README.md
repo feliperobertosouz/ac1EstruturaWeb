@@ -1,7 +1,7 @@
 # ac1EstruturaWeb
 Projeto para faculdade
 
-# Aula 2
+# Aula 2/3
 Utilizad a extensão do vsCode ThunderClient
 Para acompanhar o conteudo da aula 2 aqui foi criado o Model de Alunos e usado ele para poder mostrar coisas no controller
 ![img.png](img.png)
