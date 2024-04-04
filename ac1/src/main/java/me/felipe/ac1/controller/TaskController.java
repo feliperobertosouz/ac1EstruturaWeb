@@ -1,5 +1,7 @@
 package me.felipe.ac1.controller;
 
+import me.felipe.ac1.model.Task;
+import me.felipe.ac1.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,30 +10,29 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-    private List<String> tasks = new ArrayList<>();
+    private final TaskService taskService;
 
-    public TaskController() {
-        tasks.add("Estudar para a prova de matemática");
-        tasks.add("Estudar para alguma prova ai ");
-        tasks.add("Peeeeeeeeeeeeeee");
+    /*
+     a injeção de dependência é visível no construtor da classe TaskController. TaskController depende de TaskService,
+     que é passado como um parâmetro no construtor. O Spring será responsável por injetar uma instância de TaskService
+     quando criar uma instância de TaskController.
+     */
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
+
     @GetMapping
-    public List<String> getAllTasks() {
-        return tasks;
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 
-    @GetMapping("/{task}")
-    public String getTaskByIndex(@PathVariable int task) {
-        if (task >= 0 && task < tasks.size()) {
-            return tasks.get(task);
-        } else {
-            return "Tarefa não encontrada";
-        }
+    @GetMapping("/{id}")
+    public Task getTaskById(@PathVariable Long id) {
+        return taskService.getTaskById(id);
     }
 
     @PostMapping("/add")
-    public void addTask(@RequestBody String task) {
-        tasks.add(task); // Adiciona a tarefa recebida aos dados simulados
-        System.out.println("Tarefa adicionada: " + task); // Exibe os dados recebidos via POST no console
+    public Task createTask(@RequestBody Task task) {
+        return taskService.createTask(task);
     }
 }
