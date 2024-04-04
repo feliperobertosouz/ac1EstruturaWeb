@@ -5,6 +5,7 @@ Projeto para faculdade
 Nesta aula foi aplicado o Hibernate e implementado o metodo Delete e Update
 
 ## Metodo Put atualizando um aluno
+![img_4.png](img_4.png)
 ![img.png](img.png)
 Feito o update (anteriormente era apenas Teste e agora é um testeEditado)
 ![img_1.png](img_1.png)
