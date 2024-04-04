@@ -1,6 +1,6 @@
 package me.felipe.ac1.service;
 
-import me.felipe.ac1.model.Task;
+import me.felipe.ac1.model.Aluno;
 import me.felipe.ac1.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +15,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllTasks() {
+    public List<Aluno> getAllTasks() {
         return taskRepository.findAll();
     }
 
     @Override
-    public Task getTaskById(Long id) {
+    public Aluno getTaskById(Long id) {
         return taskRepository.findById(id);
     }
 
     @Override
-    public Task createTask(Task task) {
-        return taskRepository.save(task);
+    public Aluno createTask(Aluno aluno) {
+        return taskRepository.save(aluno);
     }
 }

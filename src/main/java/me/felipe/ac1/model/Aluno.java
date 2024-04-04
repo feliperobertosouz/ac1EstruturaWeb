@@ -1,11 +1,11 @@
 package me.felipe.ac1.model;
 
-public class Task {
+public class Aluno {
     private Long id;
     private String title;
     private String description;
 
-    public Task(Long id, String title, String description) {
+    public Aluno(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
